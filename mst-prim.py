@@ -1,11 +1,3 @@
-# Referências:
-#   
-#   https://docs.python.org/3.6/library/
-#   https://docs.python.org/3.6/library/heapq.html#module-heapq
-#   CORMEN, Thomas H. et al. Algoritmos. 3 ed. Rio de Janeiro: Editora Elsevier, 2012
-
-# Alunos: Arthur dos Santos Almeida, Bernardo Carvalho e Gabriel Oliveira
-
 # Python 3
 
 # para executar, digite python3 mst-prim.py nome_do_arquivo
@@ -48,7 +40,6 @@ def mst(u, v, w):
         mst[u[i]-1][v[i]-1] = w[i]
         mst[v[i]-1][u[i]-1] = w[i]
 
-    # return mst
     return np.array(mst)
 
 def mst_prim(G, r=1):
@@ -58,7 +49,6 @@ def mst_prim(G, r=1):
     vert_keys[r-1] = 0
     Q = list(G.keys())
     Q_aux = list(zip(vert_keys, Q))
-    # Transform list x into a heap, in-place, in linear time.
     heapq.heapify(Q_aux)
     
     while Q:

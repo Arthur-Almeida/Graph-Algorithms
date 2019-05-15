@@ -1,9 +1,3 @@
-# referências:
-#
-#   CORMEN, Thomas H. et al. Algoritmos. 3 ed. Rio de Janeiro: Editora Elsevier, 2012
-
-# Alunos: Arthur dos Santos Almeida, Bernardo Carvalho e Gabriel Oliveira
-
 # Python 3
 
 # para executar, digite python3 bellman_ford.py nome_do_arquivo vértice_inicial
@@ -12,7 +6,7 @@
 
 import sys
 
-# Cria o grafo a partir do arquivo, O(|V|^2)
+# Cria o grafo a partir do arquivo
 def create_graph(file):
     graph = []
 
@@ -53,9 +47,8 @@ def bellman_ford(G, s):
     vert_parents = [0] * len(G)
     d[s-1] = 0
 
-    edges = create_edges(G) # O(|E|)
+    edges = create_edges(G)
 
-    # Cada uma das |V| - 1 passagens pelas arestas demoram O(|E|), então O(|V|.|E|)
     for i in range(len(G) - 1):
         for edge in edges:
             w, u, v = edge
@@ -63,15 +56,12 @@ def bellman_ford(G, s):
                 d[v-1] = d[u-1] + w
                 vert_parents[v-1] = u
 
-    # O(|E|)
     for edge in edges:
         w, u, v = edge
         if d[v-1] > d[u-1] + w:
             return False
     
     return d
-
-# Logo o algoritmo de Bellman-Ford é executado no tempo O(|V|.|E|)
 
 def main():
     file, s = sys.argv[1], int(sys.argv[2])

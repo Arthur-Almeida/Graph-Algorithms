@@ -1,10 +1,3 @@
-# referências:
-# 
-#   https://en.wikipedia.org/wiki/Disjoint-set_data_structure
-#   CORMEN, Thomas H. et al. Algoritmos. 3 ed. Rio de Janeiro: Editora Elsevier, 2012
-
-# Alunos: Arthur dos Santos Almeida, Bernardo Carvalho e Gabriel Oliveira
-
 # Python 3
 
 # para executar, digite python3 mst-kruskal.py nome_do_arquivo
@@ -88,7 +81,6 @@ def mst(G, A):
         mst[u-1][v-1] = w
         mst[v-1][u-1] = w
 
-    # return mst
     return np.array(mst)
 
 def mst_kruskal(G):

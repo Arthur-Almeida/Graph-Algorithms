@@ -1,11 +1,3 @@
-# referências:
-#
-#   https://docs.python.org/3.6/library/
-#   https://docs.python.org/3.6/library/heapq.html#module-heapq
-#   CORMEN, Thomas H. et al. Algoritmos. 3 ed. Rio de Janeiro: Editora Elsevier, 2012
-
-# Alunos: Arthur dos Santos Almeida, Bernardo Carvalho e Gabriel Oliveira
-
 # Python 3
 
 # para executar, digite python3 dijkstra.py nome_do_arquivo vértice_inicial
@@ -15,7 +7,7 @@
 import heapq
 import sys
 
-# Cria o grafo a partir do arquivo, O(|V|^2)
+# Cria o grafo a partir do arquivo
 def create_graph(file):
     graph = []
 
@@ -49,17 +41,14 @@ def dijkstra(G, s):
     S = []
     Q = list(G.keys())
     Q_aux = list(zip(d, Q))
-    # Transforma a lista Q_aux em um heap em tempo linear, logo O(|V|)
     heapq.heapify(Q_aux)
 
     while Q:
-        # Para extrair o mínimo O(log |V|)
         _, u = heapq.heappop(Q_aux)
         i = Q.index(u)
         Q.remove(u)
         S.append(u)
 
-        # O(|V|)
         for v in G[u].keys():
             if d[v-1] > d[u-1] + G[u][v]:
                 d[v-1] = d[u-1] + G[u][v]
@@ -67,12 +56,9 @@ def dijkstra(G, s):
 
         key_aux = d[:i] + d[i+1:]
         Q_aux = list(zip(key_aux, Q))
-        # Para extrair o mínimo O(log |V|)
         heapq.heapify(Q_aux)
 
     return d
-
-# Logo o algoritmo de Dijkstra é executado no tempo O(E)
 
 def main():
     file, s = sys.argv[1], int(sys.argv[2])
